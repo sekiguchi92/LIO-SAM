@@ -67,7 +67,7 @@ This is the original ROS1 implementation of LIO-SAM. For a ROS2 implementation s
   cd ~/Downloads/ && unzip gtsam.zip -d ~/Downloads/
   cd ~/Downloads/gtsam-4.0.2/
   mkdir build && cd build
-  cmake -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF ..
+  cmake -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF .. # (in my case -DCMAKE_C_COMPILER=gcc was necessary)
   sudo make install -j8
   ```
 
