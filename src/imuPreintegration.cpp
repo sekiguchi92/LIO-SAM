@@ -251,7 +251,8 @@ public:
     {
         std::lock_guard<std::mutex> lock(mtx);
 
-        double currentCorrectionTime = ROS_TIME(odomMsg);
+        double currentCorrectionTime = ROS_TIME(odomMsg); 
+            // ROS_TIMEはinclude/utility.hで定義。return msg->header.stamp.toSec()
 
         // make sure we have imu data to integrate
         if (imuQueOpt.empty())
@@ -349,7 +350,7 @@ public:
         while (!imuQueOpt.empty())
         {
             // pop and integrate imu data that is between two optimizations
-            sensor_msgs::Imu *thisImu = &imuQueOpt.front();
+            sensor_msgs::Imu *thisImu = &imuQueOpt.front(); // queueの最初の要素を指す. popだと参照を返してqueueから削除
             double imuTime = ROS_TIME(thisImu);
             if (imuTime < currentCorrectionTime - delta_t)
             {
